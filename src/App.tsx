@@ -1,17 +1,17 @@
 import React from "react";
 
 function App() {
-  const [phase, setPhase] = React.useState(0);
+  const [start, setStart] = React.useState(false);
 
   function handleClick() {
-    setPhase(1);
+    setStart(!start);
   }
 
   return (
     <div>
       <h1>Avalonzinho</h1>
-      <button onClick={handleClick}>Começar</button>
-      {''}
+      {!start && <button onClick={handleClick}>Começar</button>}
+      {start && <button onClick={handleClick}>voltar</button>}
     </div>
   );
 }
