@@ -1,19 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
+import Home from "./Home";
+import Start from "./Start";
+import Sure from "./Sure";
 
-function App() {
-  const [start, setStart] = React.useState(false);
-
-  function handleClick() {
-    setStart(!start);
-  }
-
+const App = () => {
   return (
-    <div>
-      <h1>Avalonzinho</h1>
-      {!start && <button onClick={handleClick}>Começar</button>}
-      {start && <button onClick={handleClick}>voltar</button>}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="start" element={<Start />} />
+        <Route path="sure" element={<Sure />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
