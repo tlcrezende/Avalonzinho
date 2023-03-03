@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "./Form";
+import { PlayersContext } from "./PlayersContext";
 
 //TUDU: fazer um contexto global para colocar o nome dos jogadores pois o react reiniciar o estado dos 
 //jogadores quando muda de página. Daí refatorar e acho que não precisa do players, apenas do length do array de players
@@ -8,14 +9,9 @@ import Form from "./Form";
 const Start = () => {
   const navigate = useNavigate();
   const [players, setPlayers] = React.useState(5);
-  const [validation, setValidation] = React.useState(false);
-  const [playersProps, setPlayersProps] = React.useState([
-    { name: "Jogador nº 1" },
-    { name: "Jogador nº 2" },
-    { name: "Jogador nº 3" },
-    { name: "Jogador nº 4" },
-    { name: "Jogador nº 5" },
-  ]);
+  const [validation, setValidation]  = React.useState(false);
+  const {playersProps, setPlayersProps} = React.useContext(PlayersContext);
+  
 
   const handleClick = () => {
     navigate("/");
@@ -32,7 +28,7 @@ const Start = () => {
       if (target.value > playersProps.length) {
         const add = target.value - playersProps.length;
         const copy = [...playersProps];
-        copy.push({ name: "Adicionado" });
+        copy.push({ name: "Adicionado", role: '' });
         setPlayersProps(copy);
       } else {
         const copy = [...playersProps];
@@ -43,8 +39,6 @@ const Start = () => {
       setPlayers(target.value);
     }
   };
-
-  console.log(playersProps);
 
   return (
     <>
